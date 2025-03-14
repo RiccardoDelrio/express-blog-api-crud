@@ -1,9 +1,25 @@
+const posts = require('../data/posts');
+
 function index(req, res) {
-    res.json(post)
+
+    res.json(posts);
 }
 function show(req, res) {
-    res.json(post[req.params.id])
+    console.log(req.params);
+
+    const postSlug = req.params.slug;
+    const post = posts.find(post => post.slug === postSlug);
+    if (!post) {
+        return res.status(404).json({
+            error: 404,
+            message: "post not found"
+        });
+    }
+
+    res.json(post);
 }
+
+
 function create(req, res) {
     res.send('Aggiunta di un nuovo post');
 }
@@ -16,7 +32,17 @@ function update(req, res) {
 
 }
 function destroy(req, res) {
-    res.send(`Cancellazione di un post esistente con id ${req.params.id}`);
+    const postSlug = req.params.slug;
+    const post = posts.find(post => post.slug === postSlug);
+    if (!post) {
+        return res.status(404).json({
+            error: 404,
+            message: "post not found"
+        });
+    }
+    posts.splice(posts.indexOf(post), 1);
+    res.json(posts);
 
 }
+
 module.exports = ({ index, show, create, edit, update, destroy });
