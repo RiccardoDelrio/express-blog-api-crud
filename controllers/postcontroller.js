@@ -1,8 +1,15 @@
 const posts = require('../data/posts');
 
 function index(req, res) {
+    const tag = req.query.tags;
 
+    if (tag) {
+        const filteredPosts = posts.filter(post => post.tags.includes(tag));
+        return res.json(filteredPosts);
+    }
     res.json(posts);
+    /* http://localhost:3000/posts/?tags=Antipasti
+    L'eventuale chiamata da fare */
 }
 function show(req, res) {
     console.log(req.params);
