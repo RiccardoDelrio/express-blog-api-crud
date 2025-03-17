@@ -30,7 +30,14 @@ function show(req, res) {
 function create(req, res) {
     res.send('Aggiunta di un nuovo post');
     console.log(req.body);
-    posts.push(req.body);
+    const newPost = {
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags,
+    }
+    posts.push(newPost);
     console.log(posts);
 }
 function edit(req, res) {
