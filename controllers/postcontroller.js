@@ -45,8 +45,17 @@ function edit(req, res) {
 
 }
 function update(req, res) {
-    res.send(`Aggiornamento di una parte del post esistente con id ${req.params.id}`);
 
+    const postSlug = req.params.slug;
+    const post = posts.find(post => post.slug === postSlug);
+
+    post.title = req.body.title
+    post.slug = req.body.slug
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+    res.json(post);
+    console.log(posts);
 }
 function destroy(req, res) {
     const postSlug = req.params.slug;
