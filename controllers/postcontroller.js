@@ -48,7 +48,12 @@ function update(req, res) {
 
     const postSlug = req.params.slug;
     const post = posts.find(post => post.slug === postSlug);
-
+    if (!post) {
+        return res.status(404).json({
+            error: 404,
+            message: "post not found"
+        });
+    }
     post.title = req.body.title
     post.slug = req.body.slug
     post.content = req.body.content
