@@ -29,6 +29,7 @@ function show(req, res) {
 
 function create(req, res) {
     res.send('Aggiunta di un nuovo post');
+    console.log(req.body);
 }
 function edit(req, res) {
     res.send(`Modifica di un post esistente con id ${req.params.id}`);
