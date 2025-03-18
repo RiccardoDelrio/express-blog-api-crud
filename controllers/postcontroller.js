@@ -1,6 +1,7 @@
 const posts = require('../data/posts');
 
 function index(req, res) {
+    /*     app.ciao() */  //Se si vuole triggerare un errore 500 */ 
     const tag = req.query.tags;
 
     if (tag) {
@@ -10,6 +11,7 @@ function index(req, res) {
     res.json(posts);
     /* http://localhost:3000/posts/?tags=Antipasti
     L'eventuale chiamata da fare */
+
 }
 function show(req, res) {
     console.log(req.params);

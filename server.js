@@ -10,6 +10,7 @@ const handlerError = require('./middleware/handlerError') //')
 const error_404 = require('./middleware/error_404')
 app.use('/posts', postsRoutes) //AGGIUNGO LE ROTTE AL SERVER
 app.use(handlerError)
+
 app.listen(port, () => {
 
     console.log(`Server attivo http://localhost:${port}`)
