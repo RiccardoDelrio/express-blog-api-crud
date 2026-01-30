@@ -14,10 +14,9 @@ function index(req, res) {
 
 }
 function show(req, res) {
-    console.log(req.params);
+    const postId = parseInt(req.params.id);
+    const post = posts.find(post => post.id === postId);
 
-    const postSlug = req.params.slug;
-    const post = posts.find(post => post.slug === postSlug);
     if (!post) {
         return res.status(404).json({
             error: 404,
@@ -27,7 +26,6 @@ function show(req, res) {
 
     res.json(post);
 }
-
 
 function create(req, res) {
     res.send('Aggiunta di un nuovo post');
